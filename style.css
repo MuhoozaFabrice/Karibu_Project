@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+}
+
+header {
+    background: #0b5ed7;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #ffffff;
+    padding: 10px;
+    gap: 10px;
+}
+
+nav button {
+    padding: 10px 15px;
+    border: none;
+    background: #198754;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+nav button:hover {
+    background: #146c43;
+}
+
+.section {
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 700px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+form input, form select, form button {
+    padding: 10px;
+    font-size: 14px;
+}
+
+form button {
+    grid-column: span 2;
+    background: #0b5ed7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #084298;
+}
+
+.dashboard {
+    display: flex;
+    gap: 15px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    background: #198754;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #e9ecef;
+}

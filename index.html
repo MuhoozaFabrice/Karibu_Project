@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Karibu Groceries LTD | KGL System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Karibu Groceries LTD</h1>
+    <p>Wholesale Produce Management System</p>
+</header>
+
+<nav>
+    <button onclick="showSection('procurement')">Produce Procurement</button>
+    <button onclick="showSection('sales')">Produce Sales</button>
+    <button onclick="showSection('credit')">Credit Sales</button>
+    <button onclick="showSection('director')">Director View</button>
+</nav>
+
+<main>
+
+    <!-- PROCUREMENT -->
+    <section id="procurement" class="section">
+        <h2>Produce Procurement (Manager Only)</h2>
+        <form id="procurementForm">
+            <input type="text" placeholder="Produce Name" required>
+            <input type="text" placeholder="Produce Type" minlength="2" required>
+            <input type="date" required>
+            <input type="time" required>
+            <input type="number" placeholder="Tonnage (kg)" min="100" required>
+            <input type="number" placeholder="Cost (UGX)" min="10000" required>
+            <input type="text" placeholder="Dealer Name" minlength="2" required>
+            <select required>
+                <option value="">Select Branch</option>
+                <option>Maganjo</option>
+                <option>Matugga</option>
+            </select>
+            <input type="tel" placeholder="Dealer Contact" pattern="[0-9]{10}" required>
+            <input type="number" placeholder="Selling Price (UGX)" min="10000" required>
+            <button type="submit">Record Procurement</button>
+        </form>
+    </section>
+
+    <!-- SALES -->
+    <section id="sales" class="section hidden">
+        <h2>Produce Sales (Sales Agent)</h2>
+        <form id="salesForm">
+            <input type="text" placeholder="Produce Name" required>
+            <input type="number" placeholder="Tonnage Sold (kg)" min="1" required>
+            <input type="number" placeholder="Amount Paid (UGX)" min="10000" required>
+            <input type="text" placeholder="Buyer Name" minlength="2" required>
+            <input type="text" placeholder="Sales Agent Name" minlength="2" required>
+            <input type="date" required>
+            <input type="time" required>
+            <button type="submit">Record Sale</button>
+        </form>
+    </section>
+
+    <!-- CREDIT SALES -->
+    <section id="credit" class="section hidden">
+        <h2>Credit / Deferred Sales</h2>
+        <form id="creditForm">
+            <input type="text" placeholder="Buyer Name" minlength="2" required>
+            <input type="text" placeholder="National ID (NIN)" pattern="[A-Z0-9]{14}" required>
+            <input type="text" placeholder="Location" minlength="2" required>
+            <input type="tel" placeholder="Contact" pattern="[0-9]{10}" required>
+            <input type="number" placeholder="Amount Due (UGX)" min="10000" required>
+            <input type="text" placeholder="Sales Agent Name" minlength="2" required>
+            <input type="date" required>
+            <input type="text" placeholder="Produce Name" minlength="2" required>
+            <input type="text" placeholder="Produce Type" minlength="2" required>
+            <input type="number" placeholder="Tonnage (kg)" min="1" required>
+            <input type="date" required>
+            <button type="submit">Record Credit Sale</button>
+        </form>
+    </section>
+
+    <!-- DIRECTOR VIEW -->
+    <section id="director" class="section hidden">
+        <h2>Director Dashboard (Mr. Orban)</h2>
+        <div class="dashboard">
+            <div class="card">Total Procurement: UGX <span id="totalProcurement">0</span></div>
+            <div class="card">Total Sales: UGX <span id="totalSales">0</span></div>
+            <div class="card">Outstanding Credit: UGX <span id="totalCredit">0</span></div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Karibu Groceries LTD</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
