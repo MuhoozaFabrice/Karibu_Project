@@ -1,0 +1,28 @@
+{
+  "name": "karibu_groceries_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": { 
+    "start": "node app.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhoozaFabrice/Karibu_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuhoozaFabrice/Karibu_Project/issues"
+  },
+  "homepage": "https://github.com/MuhoozaFabrice/Karibu_Project#readme",
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.4"
+  }
+}
