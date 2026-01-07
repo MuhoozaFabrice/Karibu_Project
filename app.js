@@ -8,7 +8,7 @@ let totalProcurement = 0;
 let totalSales = 0;
 let totalCredit = 0;
 
-document.getElementById("procurementForm").addEventListener("submit", function(e){
+document.getElementById("procurementForm").addEventListener("submit", function (e) {
     e.preventDefault();
     alert("Produce procurement recorded successfully!");
     totalProcurement += 100000;
@@ -16,7 +16,7 @@ document.getElementById("procurementForm").addEventListener("submit", function(e
     this.reset();
 });
 
-document.getElementById("salesForm").addEventListener("submit", function(e){
+document.getElementById("salesForm").addEventListener("submit", function (e) {
     e.preventDefault();
     alert("Sale recorded successfully!");
     totalSales += 50000;
@@ -24,7 +24,7 @@ document.getElementById("salesForm").addEventListener("submit", function(e){
     this.reset();
 });
 
-document.getElementById("creditForm").addEventListener("submit", function(e){
+document.getElementById("creditForm").addEventListener("submit", function (e) {
     e.preventDefault();
     alert("Credit sale recorded successfully!");
     totalCredit += 70000;

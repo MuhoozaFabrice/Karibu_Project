@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background: #0b5ed7;
+    background: #303c4d;
     color: white;
     padding: 20px;
     text-align: center;
@@ -58,14 +58,14 @@ form input, form select, form button {
 
 form button {
     grid-column: span 2;
-    background: #0b5ed7;
+    background: #303c4d;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 form button:hover {
-    background: #084298;
+    background: #303c4d;
 }
 
 .dashboard {
