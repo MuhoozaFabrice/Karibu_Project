@@ -7,19 +7,38 @@
 </head>
 <body>
 
-<header>
+<!-- LOGIN VIEW (shown when unauthenticated) -->
+<section id="loginView" class="section login-container">
+    <h2>Sign In to Karibu Groceries</h2>
+    <form id="loginForm">
+        <input id="loginUsername" type="text" placeholder="Username" required>
+        <input id="loginPassword" type="password" placeholder="Password" required>
+        <div class="login-actions">
+            <button type="submit">Sign In</button>
+        </div>
+        <!-- <p class="login-note">Use demo accounts: <strong>manager/manager123</strong>, <strong>director/director123</strong>, <strong>sales/sales123</strong></p> -->
+    </form>
+</section>
+
+<header class="hidden">
     <h1>Karibu Groceries LTD</h1>
     <p>Wholesale Produce Management System</p>
 </header>
 
-<nav>
-    <button onclick="showSection('procurement')">Produce Procurement</button>
-    <button onclick="showSection('sales')">Produce Sales</button>
-    <button onclick="showSection('credit')">Credit Sales</button>
-    <button onclick="showSection('director')">Director View</button>
-</nav>
 
-<main>
+<div class="app">
+    <aside class="sidebar" aria-label="Primary">
+        <h2>KGL System</h2>
+        <nav class="sidebar-nav">
+            <button onclick="showSection('procurement')">Produce Procurement</button>
+            <button onclick="showSection('sales')">Produce Sales</button>
+            <button onclick="showSection('credit')">Credit Sales</button>
+            <button onclick="showSection('director')">Director View</button>
+            <button class="logout">Logout</button>
+        </nav>
+    </aside>
+
+    <main class="main-content">
 
     <!-- PROCUREMENT -->
     <section id="procurement" class="section">
@@ -88,6 +107,8 @@
     </section>
 
 </main>
+
+</div>
 
 <footer>
     <p>&copy; 2026 Karibu Groceries LTD</p>
