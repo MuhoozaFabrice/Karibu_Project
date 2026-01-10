@@ -1,8 +1,8 @@
 // --- Simple front-end auth + role-guard ---
 const USERS = [
-    { username: 'manager', password: 'manager888', role: 'manager' },
-    { username: 'director', password: 'director888', role: 'director' },
-    { username: 'sales', password: 'sales888', role: 'sales' }
+    { username: 'manager', password: 'manager90', role: 'manager' },
+    { username: 'director', password: 'director90', role: 'director' },
+    { username: 'sales', password: 'sales90', role: 'sales' }
 ];
 
 function setUserSession(user) {
