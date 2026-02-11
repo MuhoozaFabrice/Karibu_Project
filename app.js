@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = (document.getElementById('loginPassword') || {}).value || '';
             const user = USERS.find(u => u.username === username && u.password === password);
             if (!user) {
-                alert('Invalid credentials. Try demo accounts listed on the form.');
+                alert('Invalid credentials. Use manager/manager90, director/director90, or sales/sales90.');
                 return;
             }
             setUserSession({ username: user.username, role: user.role });
