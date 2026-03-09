@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KGL Manager Dashboard</title>
+<link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Chart Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>KGL Manager</h2>
+        <ul>
+            <li class="active"><i class="bi bi-speedometer2 nav-icon" aria-hidden="true"></i><span>Dashboard</span></li>
+            <li><i class="bi bi-basket2 nav-icon" aria-hidden="true"></i><span>Procurement</span></li>
+            <li><i class="bi bi-cash-coin nav-icon" aria-hidden="true"></i><span>Sales</span></li>
+            <li><i class="bi bi-box-seam nav-icon" aria-hidden="true"></i><span>Inventory</span></li>
+            <li><i class="bi bi-tags nav-icon" aria-hidden="true"></i><span>Pricing</span></li>
+        </ul>
+
+        <button class="logout"><i class="bi bi-box-arrow-right nav-icon" aria-hidden="true"></i><span>Logout</span></button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <header class="topbar">
+            <h1>Manager Dashboard</h1>
+            <span>Branch Manager</span>
+        </header>
+
+        <!-- KPI CARDS -->
+        <section class="cards">
+            <div class="card">
+                <h3>Total Stock</h3>
+                <p id="totalStock">0 KG</p>
+            </div>
+
+            <div class="card">
+                <h3>Today's Sales</h3>
+                <p id="todaySales">UGX 0</p>
+            </div>
+
+            <div class="card alert-card">
+                <h3>Stock Alerts</h3>
+                <p id="stockAlert">No alerts</p>
+            </div>
+        </section>
+
+        <!-- PROCUREMENT FORM -->
+        <section class="form-section">
+            <h2>Record Produce Procurement</h2>
+
+            <form id="procurementForm">
+
+                <input type="text" id="produceName" placeholder="Produce Name" required>
+
+                <input type="text" id="produceType" placeholder="Produce Type" required>
+
+                <input type="number" id="tonnage" placeholder="Tonnage (KG)" required>
+
+                <input type="number" id="cost" placeholder="Cost (UGX)" required>
+
+                <input type="text" id="dealer" placeholder="Dealer Name" required>
+
+                <input type="tel" id="contact" placeholder="Dealer Contact" required>
+
+                <input type="number" id="sellingPrice" placeholder="Selling Price (UGX)" required>
+
+                <button type="submit">Add Procurement</button>
+
+            </form>
+        </section>
+
+        <!-- SALES FORM -->
+        <section class="form-section">
+            <h2>Record Sale</h2>
+
+            <form id="salesForm">
+
+                <input type="text" id="saleProduce" placeholder="Produce Name" required>
+
+                <input type="number" id="saleTonnage" placeholder="Tonnage Sold (KG)" required>
+
+                <input type="text" id="buyerName" placeholder="Buyer Name" required>
+
+                <input type="number" id="amountPaid" placeholder="Amount Paid (UGX)" required>
+
+                <button type="submit">Record Sale</button>
+
+            </form>
+        </section>
+
+        <!-- INVENTORY TABLE -->
+        <section class="inventory">
+            <h2>Stock Levels</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produce</th>
+                        <th>Type</th>
+                        <th>Stock (KG)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="inventoryTable"></tbody>
+            </table>
+        </section>
+
+        <!-- CHART -->
+        <section class="chart-box">
+            <h2>Stock Distribution</h2>
+            <canvas id="stockChart"></canvas>
+        </section>
+
+    </main>
+</div>
+
+<script src="../js/manager.js"></script>
+</body>
+</html>
