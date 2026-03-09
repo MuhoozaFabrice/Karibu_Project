@@ -31,6 +31,14 @@ const __dirname = path.dirname(__filename);
 // Build an absolute path to the frontend public folder.
 const publicDir = path.join(__dirname, '..', 'public');
 
+// Stop startup early if MONGO_URI is missing, with a clear deployment message.
+if (!process.env.MONGO_URI) {
+    // Log an explicit error so Render logs show the exact missing variable.
+    console.error('Startup failed: MONGO_URI is not defined in environment variables.');
+    // Exit with failure code so deployment is marked unhealthy instead of hanging.
+    process.exit(1);
+}
+
 // Connect to MongoDB when the server boots up.
 connectDB();
 
