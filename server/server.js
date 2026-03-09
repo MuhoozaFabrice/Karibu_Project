@@ -1,75 +1,94 @@
-// Import path and URL utilities - helps us find file locations on the computer
+// Import Node's path utilities so we can build absolute file paths safely.
 import path from 'path';
+// Import a helper to convert this module URL into a normal file path.
 import { fileURLToPath } from 'url';
-// Import CORS - allows different websites to talk to our server safely
+// Import CORS middleware so browser apps from other origins can call this API.
 import cors from 'cors';
-// Import dotenv - helps us read secret settings from a .env file
+// Import dotenv so environment variables from .env are available in process.env.
 import dotenv from 'dotenv';
-// Import Express - the main tool that lets us build a web server
+// Import Express so we can create and run the web server.
 import express from 'express';
-// Import the database connection function - connects us to MongoDB
+// Import database connection function for MongoDB startup.
 import connectDB from './config/db.js';
-// Import the analytics routes - pages that show business reports
+// Import analytics routes (director summary endpoints).
 import analyticsRoutes from './routes/analyticsRoutes.js';
-// Import the auth routes - pages for login and sign up
+// Import authentication routes (register/login endpoints).
 import authRoutes from './routes/authRoutes.js';
-// Import the procurement routes - pages for buying products
+// Import procurement routes (manager stock purchase endpoints).
 import procurementRoutes from './routes/procurementRoutes.js';
-// Import the sales routes - pages for selling products
+// Import sales routes (cash/credit sale and stock endpoints).
 import salesRoutes from './routes/salesRoutes.js';
 
-// Load secret settings from the .env file
-// Load secret settings from the .env file
+// Load variables from .env into process.env before anything else uses them.
 dotenv.config();
 
-// Create the Express web server
+// Create one Express application instance.
 const app = express();
-// Get the name of the current file
+// Resolve this file's absolute path.
 const __filename = fileURLToPath(import.meta.url);
-// Get the name of the folder where this file is located
+// Resolve this file's folder path.
 const __dirname = path.dirname(__filename);
+// Build an absolute path to the frontend public folder.
+const publicDir = path.join(__dirname, '..', 'public');
 
-// Connect to the MongoDB database
-// Connect to the MongoDB database
+// Connect to MongoDB when the server boots up.
 connectDB();
 
-// Allow requests from different websites (CORS setup)
+// Enable CORS for development and production frontend access.
 app.use(cors());
-// Allow the server to read JSON data from requests
+// Parse incoming JSON request bodies automatically.
 app.use(express.json());
 
-// Health check - when someone goes to /api/health, tell them the server is working
+// Health-check endpoint used by developers/hosting to verify server status.
 app.get('/api/health', (_req, res) => {
-    res.status(200).json({ status: 'ok', message: 'KGL API is running.' });
+    // Return a structured success JSON response.
+    res.status(200).json({ success: true, message: 'KGL API is running.' });
 });
 
-// Use the auth routes for login and sign up
+// Mount auth endpoints under /api/auth (for example: /api/auth/login).
 app.use('/api/auth', authRoutes);
-// Use the procurement routes for buying products
+// Also expose auth endpoints under /api for simpler frontend patterns (for example: /api/login).
+app.use('/api', authRoutes);
+// Mount procurement endpoints under /api/procurement.
 app.use('/api/procurement', procurementRoutes);
-// Use the sales routes for selling products
+// Mount sales endpoints under /api/sales.
 app.use('/api/sales', salesRoutes);
-// Use the analytics routes for showing reports
+// Mount analytics endpoints under /api/analytics.
 app.use('/api/analytics', analyticsRoutes);
 
-// Serve all the HTML, CSS, and JavaScript files for the website
-// Serve all the HTML, CSS, and JavaScript files for the website
-app.use(express.static(path.join(__dirname, '..', 'public')));
+// Serve static frontend assets (HTML, CSS, JS, images) from the public folder.
+app.use(express.static(publicDir));
 
-// If someone asks for a page that doesn't exist, show a "not found" message
-app.use((req, res) => {
-    res.status(404).json({ message: 'Route not found.' });
+// When a user opens "/", send the frontend entry page (index.html).
+app.get('/', (_req, res) => {
+    // Send the file using its absolute path.
+    res.sendFile(path.join(publicDir, 'index.html'));
 });
 
-// If something goes wrong, show an error message
+// Handle unknown API routes with a structured JSON error response.
+app.use('/api/*splat', (_req, res) => {
+    // Return 404 for any API path that does not exist.
+    res.status(404).json({ success: false, message: 'API route not found.' });
+});
+
+// Handle unknown non-API routes with a simple frontend fallback.
+app.use((_req, res) => {
+    // Send users to index.html so the web app can load.
+    res.sendFile(path.join(publicDir, 'index.html'));
+});
+
+// Centralized error handler to keep server stable on unexpected errors.
 app.use((error, _req, res, _next) => {
+    // Log full server error for debugging on the backend.
     console.error('Unhandled server error:', error);
-    res.status(500).json({ message: 'Internal server error.' });
+    // Return a safe structured JSON response to the client.
+    res.status(500).json({ success: false, message: 'Internal server error.' });
 });
 
-// Get the port number from the settings, or use 5000 if not set
+// Use Render's assigned PORT in production, otherwise use local port 5000.
 const PORT = Number(process.env.PORT) || 5000;
-// Start the server and listen for requests
+// Start listening for incoming HTTP requests on the selected port.
 app.listen(PORT, () => {
+    // Log startup message so we know server booted correctly.
     console.log(`KGL backend running on port ${PORT}`);
 });

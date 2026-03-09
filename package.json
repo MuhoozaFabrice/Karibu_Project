@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "- Replaced == with === - Removed unused variables - Fixed inconsistent indentation - Standardized quotes to single quotes - Applied consistent formatting across files",
   "type": "module",
-  "main": "server/server.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon server/server.js",
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
